@@ -13,6 +13,7 @@ class Game
     [6,4,2]
   ]
 
+  #could not get 3 arguments to work, but 3 standard arguments does work
   def initialize(player_1 = Players::Human.new('X'), player_2 = Players::Human.new('O'), board = Board.new)
     @board = board
     @player_1 = player_1
@@ -28,26 +29,16 @@ class Game
   end
 
   def over?
-      if draw? || won?
-        true
-      else
-        false
-      end
+      draw? || won?
   end
 
   def won?
-    WIN_COMBINATIONS.map {|combo| combo.map {|num| board.position(num)} }.include?(["X", "X", "X"]) || 
+    WIN_COMBINATIONS.map {|combo| combo.map {|num| board.position(num)} }.include?(["X", "X", "X"]) ||
     WIN_COMBINATIONS.map {|combo| combo.map {|num| board.position(num)} }.include?(["O", "O", "O"])  
   end
 
   def draw?
-    if won?
-      false
-    elsif @board.full?
-      true
-    else
-      false
-    end
+    @board.full? && !won?
   end
 
   def winner
@@ -60,9 +51,37 @@ class Game
     end
   end
 
+  #how does current_player.move(@board) return "1"?
   def turn
-    
+    # a move is a player providing input
+    move = current_player.move(@board)
+    # if the move is invalid, ask for input again
+    if !@board.valid_move?(move)
+      turn
+    else
+      # if the move is valid, then update the board which changes the player
+      @board.update(move, current_player)
+    end
   end
+
+  def play
+    #check if game is over on every turn
+    while !over?
+      #asks for players input on every turn
+      turn
+    end
+    if won?
+      #congratulate the winnner
+      puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cats Game!"
+    end
+  end
+
+
+
+
+
 
 
 

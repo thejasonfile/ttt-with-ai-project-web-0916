@@ -1,15 +1,13 @@
 class Board
 
-  attr_accessor :cells, :display
+  attr_accessor :cells
 
   def initialize
-    @cells = []
     reset!
   end
 
   def reset!
-    @cells = []
-    @cells = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    @cells = Array.new(9, " ")
   end
 
   def display
@@ -36,15 +34,15 @@ class Board
   end
 
   def taken?(num)
-    @cells[num.to_i-1] == "X" || @cells[num.to_i-1] == "O"
+    position(num) != " "
   end
 
   def valid_move?(num)
-    (1..9).to_a.include?(num.to_i) && !taken?(num)
+    num.to_i.between?(1,9) && !taken?(num)
   end
 
-  def update(num, player)
-    @cells[num.to_i - 1] = player.token
+  def update(input, player)
+    @cells[input.to_i - 1] = player.token
   end
 
 end
