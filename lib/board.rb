@@ -1,6 +1,6 @@
 class Board
 
-  attr_accessor :cells
+  attr_accessor :cells, :display
 
   def initialize
     @cells = []
@@ -33,8 +33,15 @@ class Board
   end
 
   def taken?(num)
-    
+    @cells[num.to_i-1] == "X" || @cells[num.to_i-1] == "O"
   end
 
+  def valid_move?(num)
+    (1..9).to_a.include?(num.to_i) && !taken?(num)
+  end
+
+  def update(num, player)
+    @cells[num.to_i - 1] = player.token
+  end
 
 end
