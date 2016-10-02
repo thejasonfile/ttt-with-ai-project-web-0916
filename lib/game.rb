@@ -49,5 +49,26 @@ class Game
       false
     end
   end
+
+  def winner
+    if WIN_COMBINATIONS.map {|combo| combo.map {|num| board.position(num)} }.include?(["X", "X", "X"])
+      "X"
+    elsif WIN_COMBINATIONS.map {|combo| combo.map {|num| board.position(num)} }.include?(["O", "O", "O"])  
+      "O"
+    else
+      nil
+    end
+  end
+
+  def turn
+    move = gets.chomp
+    puts move
+  end
+
+
+
+
+
+
 end
 

@@ -21,7 +21,10 @@ class Board
   end
 
   def position(num)
-    @cells.at(num.to_i-1)
+    if num.class == String
+      num = num.to_i - 1
+    end
+    @cells.at(num)
   end
 
   def full?
