@@ -27,8 +27,6 @@ class Game
     end
   end
 
-
-
   def over?
       if draw? || won?
         true
@@ -38,7 +36,8 @@ class Game
   end
 
   def won?
-    WIN_COMBINATIONS.map {|combo| combo.map {|num| board.position(num)} }.include?(["X", "X", "X"]) || WIN_COMBINATIONS.map {|combo| combo.map {|num| board.position(num)} }.include?(["O", "O", "O"])  
+    WIN_COMBINATIONS.map {|combo| combo.map {|num| board.position(num)} }.include?(["X", "X", "X"]) || 
+    WIN_COMBINATIONS.map {|combo| combo.map {|num| board.position(num)} }.include?(["O", "O", "O"])  
   end
 
   def draw?
