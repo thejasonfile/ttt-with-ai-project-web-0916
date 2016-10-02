@@ -3,14 +3,8 @@ class Game
   attr_accessor :board, :player_1, :player_2, :current_player
 
   WIN_COMBINATIONS = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [6,4,2]
+    [0,1,2], [3,4,5], [6,7,8], [0,3,6], 
+    [1,4,7], [2,5,8], [0,4,8], [6,4,2]
   ]
 
   #could not get 3 arguments to work, but 3 standard arguments does work
@@ -77,16 +71,5 @@ class Game
       puts "Cats Game!"
     end
   end
-
-
-
-
-
-
-
-
-
-
-
 end
 
