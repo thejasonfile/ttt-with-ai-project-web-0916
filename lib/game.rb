@@ -61,8 +61,7 @@ class Game
   end
 
   def turn
-    move = gets.chomp
-    puts move
+    
   end
 
 
