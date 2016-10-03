@@ -3,7 +3,10 @@ module Players
   class Computer < Player
 
     def move(board)
-      board.valid_move?('1')
+      num = rand(0..8)
+      if board.valid_move?(num)
+      end
+      num.to_s
     end
 
   end
